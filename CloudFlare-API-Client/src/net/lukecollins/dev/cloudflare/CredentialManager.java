@@ -46,7 +46,9 @@ public class CredentialManager {
       System.out.println("Exception: " + ioe);
     } finally {
       try {
-        inputStream.close();
+        if (inputStream != null) {
+          inputStream.close();
+        }
       } catch (IOException ioe) {
         ioe.printStackTrace();
       }
