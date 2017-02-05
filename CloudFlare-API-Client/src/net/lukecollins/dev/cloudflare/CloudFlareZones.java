@@ -75,13 +75,25 @@ public class CloudFlareZones {
     }
 
     BufferedReader rd = null;
+    InputStreamReader isr = null;
     try {
       if (response != null) {
-        rd = new BufferedReader(
-            new InputStreamReader(response.getEntity().getContent()));
+        isr = new InputStreamReader(response.getEntity().getContent(), "UTF-8");
+        rd = new BufferedReader(isr);
       }
     } catch (UnsupportedOperationException | IOException uoeioe) {
       uoeioe.printStackTrace();
+    } finally {
+      try {
+        if (rd != null) {
+          rd.close();
+        }
+        if (isr != null) {
+          isr.close();
+        }
+      } catch (IOException ioe) {
+        ioe.printStackTrace();
+      }
     }
 
     StringBuffer result = new StringBuffer();
