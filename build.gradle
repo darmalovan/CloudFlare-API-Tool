@@ -12,6 +12,11 @@ repositories {
     mavenCentral()
 }
 
+checkstyle {
+    configFile = file("${project.rootDir}/config/checkstyle/checkstyle.xml")
+    toolVersion = '6.7'
+}
+
 dependencies {
 	compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.22'
 	compile group: 'net.java.dev.jna', name: 'jna-platform', version: '4.3.0'
