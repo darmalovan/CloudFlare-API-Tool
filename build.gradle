@@ -20,7 +20,6 @@ checkstyle {
 
 findbugs {
 	toolVersion = "3.0.1"
-	sourceSets = [sourceSets.main]
 	ignoreFailures = false
 	effort = "max"
 	reportLevel = "low"
