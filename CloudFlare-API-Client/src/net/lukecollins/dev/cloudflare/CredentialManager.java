@@ -42,11 +42,13 @@ public class CredentialManager {
       this.apiUrl = prop.getProperty("CF_URL");
       this.apiVersion = prop.getProperty("CF_VERSION");
  
-    } catch (Exception ioe) {
-      System.out.println("Exception: " + ioe);
+    } catch (IOException ioe) {
+      ioe.printStackTrace();
     } finally {
       try {
-        inputStream.close();
+        if (inputStream != null) {
+          inputStream.close();
+        }
       } catch (IOException ioe) {
         ioe.printStackTrace();
       }

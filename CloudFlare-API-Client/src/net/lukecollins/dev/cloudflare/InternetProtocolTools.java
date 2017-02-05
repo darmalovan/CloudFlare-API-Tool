@@ -45,13 +45,25 @@ public class InternetProtocolTools {
       e1.printStackTrace();
     }
     BufferedReader in = null;
+    InputStreamReader isr = null;
     try {
       if (whatismyip != null) {
-        in = new BufferedReader(new InputStreamReader(
-            whatismyip.openStream()));
+        isr = new InputStreamReader(whatismyip.openStream(), "UTF-8");
+        in = new BufferedReader(isr);
       }
     } catch (IOException ioe) {
       ioe.printStackTrace();
+    } finally {
+      try {
+        if (in != null) {
+          in.close();
+        }
+        if (isr != null) {
+          isr.close();
+        }
+      } catch (IOException ioe) {
+        ioe.printStackTrace();
+      }
     }
     try {
       if (in != null) {
