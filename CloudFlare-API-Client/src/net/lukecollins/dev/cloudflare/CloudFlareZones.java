@@ -23,16 +23,13 @@ import java.io.InputStreamReader;
 public class CloudFlareZones {
 
   private String domainName = null;
-  private CredentialManager cm = null;
 
   /**
    * CF zone.
-   * @param cm credentials
    * @param domainName domain
    */
-  public CloudFlareZones(CredentialManager cm, String domainName) {
+  public CloudFlareZones(String domainName) {
     this.domainName = domainName;
-    this.cm = cm;
   }
 
   /**
@@ -59,12 +56,12 @@ public class CloudFlareZones {
     String operator = "zones";
     String param = "?name=" + getShortDomainName();
 
-    String url = cm.getApiVersionedUrl() + "/" + operator + param;
+    String url = Constants.VERSIONED_URL + "/" + operator + param;
 
     HttpClient client = HttpClientBuilder.create().build();
     HttpGet request = new HttpGet(url);
-    request.setHeader("X-Auth-Email",cm.getUserName());
-    request.setHeader("X-Auth-Key", cm.getApiKey());
+    request.setHeader("X-Auth-Email",Constants.USERNAME);
+    request.setHeader("X-Auth-Key", Constants.APIKEY);
     request.setHeader("Content-Type","application/json");
 
     HttpResponse response = null;
