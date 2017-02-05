@@ -27,18 +27,15 @@ public class CloudFlareDomainNameServiceZones {
 
   private CloudFlareZones cfz = null;
   private String domainName = null;
-  private CredentialManager cm = null;
 
   /**
    * Create object for DNS Zone.
    * @param cfz Zone
-   * @param cm Credentials
    * @param domainName Domain
    */
   public CloudFlareDomainNameServiceZones(CloudFlareZones cfz, 
-      CredentialManager cm, String domainName) {
+      String domainName) {
     this.cfz = cfz;
-    this.cm = cm;
     this.domainName = domainName;
   }
 
@@ -93,15 +90,15 @@ public class CloudFlareDomainNameServiceZones {
     }
     String operator = "zones";
     String subOperator = "dns_records";
-    String url = cm.getApiVersionedUrl() + "/" 
+    String url = Constants.VERSIONED_URL + "/" 
         + operator + "/" 
         + cfz.getZoneId() + "/" 
         + subOperator;
 
     HttpClient client = HttpClientBuilder.create().build();
     HttpPost request = new HttpPost(url);
-    request.setHeader("X-Auth-Email",cm.getUserName());
-    request.setHeader("X-Auth-Key", cm.getApiKey());
+    request.setHeader("X-Auth-Email",Constants.USERNAME);
+    request.setHeader("X-Auth-Key", Constants.APIKEY);
     request.setHeader("Content-Type","application/json");
 
     StringEntity params = null;
@@ -198,7 +195,7 @@ public class CloudFlareDomainNameServiceZones {
     }
     String operator = "zones";
     String subOperator = "dns_records";
-    String url = cm.getApiVersionedUrl() + "/" 
+    String url = Constants.VERSIONED_URL + "/" 
         + operator + "/" 
         + cfz.getZoneId() + "/" 
         + subOperator + "/" 
@@ -206,8 +203,8 @@ public class CloudFlareDomainNameServiceZones {
 
     HttpClient client = HttpClientBuilder.create().build();
     HttpPut request = new HttpPut(url);
-    request.setHeader("X-Auth-Email",cm.getUserName());
-    request.setHeader("X-Auth-Key", cm.getApiKey());
+    request.setHeader("X-Auth-Email",Constants.USERNAME);
+    request.setHeader("X-Auth-Key", Constants.APIKEY);
     request.setHeader("Content-Type","application/json");
 
     StringEntity params = null;
@@ -282,7 +279,7 @@ public class CloudFlareDomainNameServiceZones {
     String operator = "zones";
     String subOperator = "dns_records";
 
-    String url = cm.getApiVersionedUrl() 
+    String url = Constants.VERSIONED_URL
         + "/" 
         + operator 
         + "/" 
@@ -295,8 +292,8 @@ public class CloudFlareDomainNameServiceZones {
 
     HttpClient client = HttpClientBuilder.create().build();
     HttpGet request = new HttpGet(url);
-    request.setHeader("X-Auth-Email",cm.getUserName());
-    request.setHeader("X-Auth-Key", cm.getApiKey());
+    request.setHeader("X-Auth-Email",Constants.USERNAME);
+    request.setHeader("X-Auth-Key", Constants.APIKEY);
     request.setHeader("Content-Type","application/json");
 
     HttpResponse response = null;
@@ -377,15 +374,15 @@ public class CloudFlareDomainNameServiceZones {
     String operator = "zones";
     String subOperator = "dns_records";
 
-    String url = cm.getApiVersionedUrl() 
+    String url = Constants.VERSIONED_URL
         + "/" + operator + "/" 
         + cfz.getZoneId() + "/" 
         + subOperator;
 
     HttpClient client = HttpClientBuilder.create().build();
     HttpGet request = new HttpGet(url);
-    request.setHeader("X-Auth-Email",cm.getUserName());
-    request.setHeader("X-Auth-Key", cm.getApiKey());
+    request.setHeader("X-Auth-Email", Constants.USERNAME);
+    request.setHeader("X-Auth-Key", Constants.APIKEY);
     request.setHeader("Content-Type","application/json");
 
     HttpResponse response = null;
@@ -495,7 +492,7 @@ public class CloudFlareDomainNameServiceZones {
     }
     String operator = "zones";
     String subOperator = "dns_records";
-    String url = cm.getApiVersionedUrl() 
+    String url = Constants.VERSIONED_URL
         + "/" 
         + operator 
         + "/" 
@@ -507,8 +504,8 @@ public class CloudFlareDomainNameServiceZones {
 
     HttpClient client = HttpClientBuilder.create().build();
     HttpPut request = new HttpPut(url);
-    request.setHeader("X-Auth-Email",cm.getUserName());
-    request.setHeader("X-Auth-Key", cm.getApiKey());
+    request.setHeader("X-Auth-Email", Constants.USERNAME);
+    request.setHeader("X-Auth-Key", Constants.APIKEY);
     request.setHeader("Content-Type","application/json");
 
     StringEntity params = null;
@@ -600,7 +597,7 @@ public class CloudFlareDomainNameServiceZones {
     }
     String operator = "zones";
     String subOperator = "dns_records";
-    String url = cm.getApiVersionedUrl() 
+    String url = Constants.VERSIONED_URL 
         + "/" 
         + operator 
         + "/" 
@@ -612,8 +609,8 @@ public class CloudFlareDomainNameServiceZones {
 
     HttpClient client = HttpClientBuilder.create().build();
     HttpPut request = new HttpPut(url);
-    request.setHeader("X-Auth-Email",cm.getUserName());
-    request.setHeader("X-Auth-Key", cm.getApiKey());
+    request.setHeader("X-Auth-Email", Constants.USERNAME);
+    request.setHeader("X-Auth-Key", Constants.APIKEY);
     request.setHeader("Content-Type","application/json");
 
     StringEntity params = null;
