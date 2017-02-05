@@ -191,7 +191,7 @@ public class CloudFlareDomainNameServiceZones {
     if (payload != null && payload.has("content")) {
       payload.remove("content");
       try {
-        payload.put("content", content.toString().trim());
+        payload.put("content", content.trim());
       } catch (JSONException e2) {
         e2.printStackTrace();
       }

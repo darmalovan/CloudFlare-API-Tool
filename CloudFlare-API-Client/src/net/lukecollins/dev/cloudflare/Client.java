@@ -21,14 +21,14 @@ public class Client {
     }
 
     if (args[0].equalsIgnoreCase("enable")) {
-      String domainName = args[1].toString().trim();
+      String domainName = args[1].trim();
       CloudFlareZones cfz = new CloudFlareZones(cm, domainName);
       CloudFlareDomainNameServiceZones cfdz = 
           new CloudFlareDomainNameServiceZones(cfz, cm, domainName);
 
       System.out.println(cfdz.enableProxy());
     } else if (args[0].equalsIgnoreCase("disable")) {
-      String domainName = args[1].toString().trim();
+      String domainName = args[1].trim();
       CloudFlareZones cfz = new CloudFlareZones(cm, domainName);
       CloudFlareDomainNameServiceZones cfdz = 
           new CloudFlareDomainNameServiceZones(cfz, cm, domainName);
@@ -36,8 +36,8 @@ public class Client {
       System.out.println(cfdz.disableProxy());
 
     } else if (args[0].equalsIgnoreCase("dns")) {
-      String domainName = args[1].toString().trim();
-      String dnsType = args[2].toString().trim();
+      String domainName = args[1].trim();
+      String dnsType = args[2].trim();
       CloudFlareZones cfz = new CloudFlareZones(cm, domainName);
       InternetProtocolTools ipt = new InternetProtocolTools();
       String content = ipt.myIpAddress();

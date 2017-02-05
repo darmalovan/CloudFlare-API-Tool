@@ -44,7 +44,7 @@ public class CloudFlareZones {
     String s2 = text;
     int count = text.split("\\.",-1).length - 1;
     if (count > 1) { 
-      s2 = text.substring(text.indexOf(".") + 1);
+      s2 = text.substring(text.indexOf('.') + 1);
     }
 
     return s2;
