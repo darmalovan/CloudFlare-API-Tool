@@ -50,4 +50,9 @@ sourceSets {
 			//srcDirs = ['src/resources']
 		//}
 	}
+	test {
+		java {
+			srcDirs = ['CloudFlare-API-Client-Tests/src/']
+		}
+	}
 }
