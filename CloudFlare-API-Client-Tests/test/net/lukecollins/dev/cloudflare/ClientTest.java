@@ -10,18 +10,38 @@
 
 package net.lukecollins.dev.cloudflare;
 
+import static org.junit.Assert.assertTrue;
+
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+
 /**
  * Tool to interact with CloudFlare API.
  * @author Luke Collins
  * @year 2017
  *
  */
-public class Constants {
-  static CredentialManager cm = new CredentialManager();
+public class ClientTest {
+  @BeforeClass
+  public static void setUpBeforeClass() throws Exception {
+  }
 
-  public static final String USERNAME = cm.getUserName();
-  public static final String APIKEY = cm.getApiKey();
-  public static final String URL = cm.getApiUrl();
-  public static final String VERSION = cm.getApiVersion();
-  public static final String VERSIONED_URL = cm.getApiVersionedUrl();
+  @AfterClass
+  public static void tearDownAfterClass() throws Exception {
+  }
+
+  @Before
+  public void setUp() throws Exception {
+  }
+
+  @After
+  public void tearDown() throws Exception {
+  }
+
+  @org.junit.Test
+  public void test() {
+    assertTrue(1 > 0);  
+  }
 }
