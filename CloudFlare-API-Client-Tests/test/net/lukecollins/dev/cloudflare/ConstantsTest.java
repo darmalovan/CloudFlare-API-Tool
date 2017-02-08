@@ -36,12 +36,6 @@ public class ConstantsTest {
   }
 
   @org.junit.Test
-  public void testConstructor() {
-    assertTrue(Constants.class.getClass().getName()
-        .equals("net.lukecollins.dev.cloudflare.Constants")); 
-  }
-
-  @org.junit.Test
   public void testUsernameValid() {
     assertTrue(Constants.USERNAME.equals("<CloudFlare User Name>")); 
   }
