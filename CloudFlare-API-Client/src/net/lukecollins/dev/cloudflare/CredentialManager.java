@@ -33,25 +33,25 @@ public class CredentialManager {
    */
   public CredentialManager() {
     InputStream inputStream = null;
-    
+
     try {
       Properties prop = new Properties();
       String propFileName = "cf.properties";
- 
+
       inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
- 
+
       if (inputStream != null) {
         prop.load(inputStream);
       } else {
         throw new FileNotFoundException("property file '" 
-                  + propFileName + "' not found in the classpath");
+            + propFileName + "' not found in the classpath");
       }
- 
+
       this.userName = prop.getProperty("CF_USERNAME");
       this.apiKey = prop.getProperty("CF_KEY");
       this.apiUrl = prop.getProperty("CF_URL");
       this.apiVersion = prop.getProperty("CF_VERSION");
- 
+
     } catch (IOException ioe) {
       ioe.printStackTrace();
     } finally {

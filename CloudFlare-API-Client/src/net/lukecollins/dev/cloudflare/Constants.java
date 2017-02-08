@@ -18,7 +18,7 @@ package net.lukecollins.dev.cloudflare;
  */
 public class Constants {
   static CredentialManager cm = new CredentialManager();
-  
+
   public static final String USERNAME = cm.getUserName();
   public static final String APIKEY = cm.getApiKey();
   public static final String URL = cm.getApiUrl();

@@ -18,9 +18,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 
 public class ConstantsTest {
-  
-  Constants con = null;
-  
+
   @BeforeClass
   public static void setUpBeforeClass() throws Exception {
   }
@@ -31,34 +29,33 @@ public class ConstantsTest {
 
   @Before
   public void setUp() throws Exception {
-    con = new Constants();
   }
 
   @After
   public void tearDown() throws Exception {
-    con = null;
   }
 
   @org.junit.Test
   public void testConstructor() {
-    assertTrue(con.getClass().getName().equals("net.lukecollins.dev.cloudflare.Constants")); 
+    assertTrue(Constants.class.getClass().getName()
+        .equals("net.lukecollins.dev.cloudflare.Constants")); 
   }
-  
+
   @org.junit.Test
   public void testUsernameValid() {
     assertTrue(Constants.USERNAME.equals("<CloudFlare User Name>")); 
   }
-  
+
   @org.junit.Test
   public void testApiKeyValid() {
     assertTrue(Constants.APIKEY.equals("<CloudFlare API Key>"));  
   }
-  
+
   @org.junit.Test
   public void testUrlValid() {
     assertTrue(Constants.URL.equals("https://api.cloudflare.com/client")); 
   }
-  
+
   @org.junit.Test
   public void testVersionValid() {
     assertTrue(Constants.VERSION.equals("v4")); 
