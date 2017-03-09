@@ -3,6 +3,8 @@ sudo: required
 
 addons:
   sonarqube:
+    token:
+      secure: "ZyEqmjgi84NpiCCyDaxVJhT6eS6Zrs/unbM5+Dn6tt0be9FL6hWytx/6/Cq1fHgRkM7FTPeLZDMpjJUXEf+KAlxUnRJxgXT/NluDIiaSrDU/r3WQCHZOJM1ZhODi98yi2/w6bnw07OF0pGzSk4ARB+V4sefn4zPRITfb9GPE6lakiKy00YIaAmj1bo95pnyLYEivT5ysiOCciHXDLXTu9GwC0CSM5j/z7uER7gRnmi9y2fU296zsHmg70PWE6yw6xWFo6RhxKBOgtruA/pjQEgOuN/sR/5YY+pherp+KxllLngwzOaLDA0XWeO3GKRy8Qlu0UBHf+pVOEj9ENbmL77e0ADRgyi/qngKBVNa3SvgBO0Wht4haUAE5gs7LGMdzb5xS0UgTrsJ6tocoj2DpdnDGzpkhTncTXDvCPGj4rQaydoIXZ3+CaUr7Gic5clOqscZlB4ZAyr5C5DlkAdC1lozNJgBJTDCWknkR8vYlkhfeRLDejdnGxOnuLBllkdt+toxZKyViMJ72uvSHf0B7CK8tPuRODp70noD2PmcomBtjELTXy8YUJ+y3SAPRtIYfoL5KuF4DDXcLdJFbZjjTR9zfukgKP5AOH+5ul7+HJ2RY6r43TDdkXhEzOmfAMLzuPnQzfFmdeExdqegbV/lpJEhfyPA35gT0yVVuL9mPPbY="
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
