@@ -25,6 +25,7 @@ jdk:
 
 script:
   - ./gradlew build test jar sonarqube
+  - export SONARQUBE_SKIPPED=false
   - sonar-scanner
 
 after_success:
