@@ -85,15 +85,15 @@ dependencies {
 sourceSets {
 	main {
 		java {
-			srcDirs = ['CloudFlare-API-Client/src/']
+			srcDirs = ['src/main/']
 		}
 		resources {
-			srcDirs = ['CloudFlare-API-Client/conf/']
+			srcDirs = ['conf/']
 		}
 	}
 	test {
 		java {
-			srcDirs = ['CloudFlare-API-Client-Tests/test/']
+			srcDirs = ['src/test/']
 		}
 	}
 }
