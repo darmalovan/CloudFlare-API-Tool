@@ -25,6 +25,7 @@ jdk:
 
 script:
   - ./gradlew build test jar sonarqube
+  - sonar-scanner
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
