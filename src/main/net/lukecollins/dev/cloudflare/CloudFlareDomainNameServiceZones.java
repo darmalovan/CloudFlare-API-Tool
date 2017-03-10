@@ -38,6 +38,11 @@ public class CloudFlareDomainNameServiceZones {
 
   final org.slf4j.Logger log = LoggerFactory.getLogger(CloudFlareDomainNameServiceZones.class);
   static final String LOG_CONTEXT = "context";
+  static final String DEFAULT_ENCODING = "UTF-8";
+  static final String EMAIL_HEADER = "X-Auth-Email";
+  static final String API_HEADER = "X-Auth-Key";
+  static final String CONTENTTYPE_HEADER = "Content-Type";
+  static final String CONTENTTYPE_JSON = "application/json";
 
   private CloudFlareZones cfz = null;
   private String domainName = null;
@@ -111,9 +116,9 @@ public class CloudFlareDomainNameServiceZones {
 
     HttpClient client = HttpClientBuilder.create().build();
     HttpPost request = new HttpPost(url);
-    request.setHeader("X-Auth-Email",Constants.USERNAME);
-    request.setHeader("X-Auth-Key", Constants.APIKEY);
-    request.setHeader("Content-Type","application/json");
+    request.setHeader(EMAIL_HEADER, Constants.USERNAME);
+    request.setHeader(API_HEADER, Constants.APIKEY);
+    request.setHeader(CONTENTTYPE_HEADER, CONTENTTYPE_JSON);
 
     StringEntity params = null;
     try {
@@ -134,7 +139,7 @@ public class CloudFlareDomainNameServiceZones {
     InputStreamReader isr = null;
     try {
       if (response != null) {
-        isr = new InputStreamReader(response.getEntity().getContent(), "UTF-8");
+        isr = new InputStreamReader(response.getEntity().getContent(), DEFAULT_ENCODING);
         rd = new BufferedReader(isr);
       }
     } catch (UnsupportedOperationException | IOException uoeioe) {
@@ -217,9 +222,9 @@ public class CloudFlareDomainNameServiceZones {
 
     HttpClient client = HttpClientBuilder.create().build();
     HttpPut request = new HttpPut(url);
-    request.setHeader("X-Auth-Email",Constants.USERNAME);
-    request.setHeader("X-Auth-Key", Constants.APIKEY);
-    request.setHeader("Content-Type","application/json");
+    request.setHeader(EMAIL_HEADER, Constants.USERNAME);
+    request.setHeader(API_HEADER, Constants.APIKEY);
+    request.setHeader(CONTENTTYPE_HEADER, CONTENTTYPE_JSON);
 
     StringEntity params = null;
     try {
@@ -242,7 +247,7 @@ public class CloudFlareDomainNameServiceZones {
     InputStreamReader isr = null;
     try {
       if (response != null) {
-        isr = new InputStreamReader(response.getEntity().getContent(), "UTF-8");
+        isr = new InputStreamReader(response.getEntity().getContent(), DEFAULT_ENCODING);
         rd = new BufferedReader(isr);
       }
     } catch (UnsupportedOperationException | IOException uoeioe) {
@@ -306,9 +311,9 @@ public class CloudFlareDomainNameServiceZones {
 
     HttpClient client = HttpClientBuilder.create().build();
     HttpGet request = new HttpGet(url);
-    request.setHeader("X-Auth-Email",Constants.USERNAME);
-    request.setHeader("X-Auth-Key", Constants.APIKEY);
-    request.setHeader("Content-Type","application/json");
+    request.setHeader(EMAIL_HEADER, Constants.USERNAME);
+    request.setHeader(API_HEADER, Constants.APIKEY);
+    request.setHeader(CONTENTTYPE_HEADER, CONTENTTYPE_JSON);
 
     HttpResponse response = null;
     try {
@@ -321,7 +326,7 @@ public class CloudFlareDomainNameServiceZones {
     InputStreamReader isr = null;
     try {
       if (response != null) {
-        isr = new InputStreamReader(response.getEntity().getContent(),"UTF-8");
+        isr = new InputStreamReader(response.getEntity().getContent(), DEFAULT_ENCODING);
         rd = new BufferedReader(isr);
       }
     } catch (UnsupportedOperationException | IOException uoeioe) {
@@ -395,9 +400,9 @@ public class CloudFlareDomainNameServiceZones {
 
     HttpClient client = HttpClientBuilder.create().build();
     HttpGet request = new HttpGet(url);
-    request.setHeader("X-Auth-Email", Constants.USERNAME);
-    request.setHeader("X-Auth-Key", Constants.APIKEY);
-    request.setHeader("Content-Type","application/json");
+    request.setHeader(EMAIL_HEADER, Constants.USERNAME);
+    request.setHeader(API_HEADER, Constants.APIKEY);
+    request.setHeader(CONTENTTYPE_HEADER, CONTENTTYPE_JSON);
 
     HttpResponse response = null;
     try {
@@ -410,7 +415,7 @@ public class CloudFlareDomainNameServiceZones {
     InputStreamReader isr = null;
     try {
       if (response != null) {
-        isr = new InputStreamReader(response.getEntity().getContent(), "UTF-8");
+        isr = new InputStreamReader(response.getEntity().getContent(), DEFAULT_ENCODING);
         rd = new BufferedReader(isr);
       }
     } catch (UnsupportedOperationException | IOException uoeioe) {
@@ -518,9 +523,9 @@ public class CloudFlareDomainNameServiceZones {
 
     HttpClient client = HttpClientBuilder.create().build();
     HttpPut request = new HttpPut(url);
-    request.setHeader("X-Auth-Email", Constants.USERNAME);
-    request.setHeader("X-Auth-Key", Constants.APIKEY);
-    request.setHeader("Content-Type","application/json");
+    request.setHeader(EMAIL_HEADER, Constants.USERNAME);
+    request.setHeader(API_HEADER, Constants.APIKEY);
+    request.setHeader(CONTENTTYPE_HEADER, CONTENTTYPE_JSON);
 
     StringEntity params = null;
     try {
@@ -542,7 +547,8 @@ public class CloudFlareDomainNameServiceZones {
     BufferedReader rd = null;
     try {
       if (response != null) {
-        InputStreamReader isr = new InputStreamReader(response.getEntity().getContent(), "UTF-8");
+        InputStreamReader isr = new InputStreamReader(response.getEntity().getContent(), 
+                                                      DEFAULT_ENCODING);
         rd = new BufferedReader(isr);
       }
     } catch (UnsupportedOperationException | IOException uoeioe) {
@@ -623,9 +629,9 @@ public class CloudFlareDomainNameServiceZones {
 
     HttpClient client = HttpClientBuilder.create().build();
     HttpPut request = new HttpPut(url);
-    request.setHeader("X-Auth-Email", Constants.USERNAME);
-    request.setHeader("X-Auth-Key", Constants.APIKEY);
-    request.setHeader("Content-Type","application/json");
+    request.setHeader(EMAIL_HEADER, Constants.USERNAME);
+    request.setHeader(API_HEADER, Constants.APIKEY);
+    request.setHeader(CONTENTTYPE_HEADER, CONTENTTYPE_JSON);
 
     StringEntity params = null;
     try {
@@ -648,7 +654,7 @@ public class CloudFlareDomainNameServiceZones {
     InputStreamReader isr = null;
     try {
       if (response != null) {
-        isr = new InputStreamReader(response.getEntity().getContent(), "UTF-8");
+        isr = new InputStreamReader(response.getEntity().getContent(), DEFAULT_ENCODING);
         rd = new BufferedReader(isr);
       }
     } catch (UnsupportedOperationException | IOException uoeioe) {
