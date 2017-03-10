@@ -38,6 +38,7 @@ public class CloudFlareDomainNameServiceZones {
 
   final org.slf4j.Logger log = LoggerFactory.getLogger(CloudFlareDomainNameServiceZones.class);
   static final String LOG_CONTEXT = "context";
+  static final String DEFAULT_ENCODING = "UTF-8";
 
   private CloudFlareZones cfz = null;
   private String domainName = null;
@@ -134,7 +135,7 @@ public class CloudFlareDomainNameServiceZones {
     InputStreamReader isr = null;
     try {
       if (response != null) {
-        isr = new InputStreamReader(response.getEntity().getContent(), "UTF-8");
+        isr = new InputStreamReader(response.getEntity().getContent(), DEFAULT_ENCODING);
         rd = new BufferedReader(isr);
       }
     } catch (UnsupportedOperationException | IOException uoeioe) {
@@ -242,7 +243,7 @@ public class CloudFlareDomainNameServiceZones {
     InputStreamReader isr = null;
     try {
       if (response != null) {
-        isr = new InputStreamReader(response.getEntity().getContent(), "UTF-8");
+        isr = new InputStreamReader(response.getEntity().getContent(), DEFAULT_ENCODING);
         rd = new BufferedReader(isr);
       }
     } catch (UnsupportedOperationException | IOException uoeioe) {
@@ -321,7 +322,7 @@ public class CloudFlareDomainNameServiceZones {
     InputStreamReader isr = null;
     try {
       if (response != null) {
-        isr = new InputStreamReader(response.getEntity().getContent(),"UTF-8");
+        isr = new InputStreamReader(response.getEntity().getContent(), DEFAULT_ENCODING);
         rd = new BufferedReader(isr);
       }
     } catch (UnsupportedOperationException | IOException uoeioe) {
@@ -410,7 +411,7 @@ public class CloudFlareDomainNameServiceZones {
     InputStreamReader isr = null;
     try {
       if (response != null) {
-        isr = new InputStreamReader(response.getEntity().getContent(), "UTF-8");
+        isr = new InputStreamReader(response.getEntity().getContent(), DEFAULT_ENCODING);
         rd = new BufferedReader(isr);
       }
     } catch (UnsupportedOperationException | IOException uoeioe) {
@@ -542,7 +543,7 @@ public class CloudFlareDomainNameServiceZones {
     BufferedReader rd = null;
     try {
       if (response != null) {
-        InputStreamReader isr = new InputStreamReader(response.getEntity().getContent(), "UTF-8");
+        InputStreamReader isr = new InputStreamReader(response.getEntity().getContent(), DEFAULT_ENCODING);
         rd = new BufferedReader(isr);
       }
     } catch (UnsupportedOperationException | IOException uoeioe) {
@@ -648,7 +649,7 @@ public class CloudFlareDomainNameServiceZones {
     InputStreamReader isr = null;
     try {
       if (response != null) {
-        isr = new InputStreamReader(response.getEntity().getContent(), "UTF-8");
+        isr = new InputStreamReader(response.getEntity().getContent(), DEFAULT_ENCODING);
         rd = new BufferedReader(isr);
       }
     } catch (UnsupportedOperationException | IOException uoeioe) {
