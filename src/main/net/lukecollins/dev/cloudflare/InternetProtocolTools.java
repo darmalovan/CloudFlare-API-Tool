@@ -16,6 +16,8 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.slf4j.LoggerFactory;
+
 /**
  * Tool to interact with CloudFlare API.
  * @author Luke Collins
@@ -23,6 +25,9 @@ import java.net.URL;
  *
  */
 public class InternetProtocolTools {
+
+  final org.slf4j.Logger log = LoggerFactory.getLogger(InternetProtocolTools.class);
+  static final String LOG_CONTEXT = "context";
 
   private String myIpAddress = "";
 
@@ -52,7 +57,7 @@ public class InternetProtocolTools {
     try {
       whatismyip = new URL("http://checkip.amazonaws.com");
     } catch (MalformedURLException e1) {
-      e1.printStackTrace();
+      log.error(LOG_CONTEXT, e1);
     }
     BufferedReader in = null;
     InputStreamReader isr = null;
@@ -62,7 +67,7 @@ public class InternetProtocolTools {
         in = new BufferedReader(isr);
       }
     } catch (IOException ioe) {
-      ioe.printStackTrace();
+      log.error(LOG_CONTEXT, ioe);
     } finally {
       try {
         if (in != null) {
@@ -72,7 +77,7 @@ public class InternetProtocolTools {
           isr.close();
         }
       } catch (IOException ioe) {
-        ioe.printStackTrace();
+        log.error(LOG_CONTEXT, ioe);
       }
     }
     try {
@@ -80,7 +85,7 @@ public class InternetProtocolTools {
         result = in.readLine();
       }
     } catch (IOException ioe) {
-      ioe.printStackTrace();
+      log.error(LOG_CONTEXT, ioe);
     }
     return result;
   }

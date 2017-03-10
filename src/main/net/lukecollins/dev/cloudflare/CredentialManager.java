@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import org.slf4j.LoggerFactory;
+
 /**
  * Tool to interact with CloudFlare API.
  * @author Luke Collins
@@ -22,6 +24,9 @@ import java.util.Properties;
  *
  */
 public class CredentialManager {
+
+  final org.slf4j.Logger log = LoggerFactory.getLogger(CredentialManager.class);
+  static final String LOG_CONTEXT = "context";
 
   private String userName = null;
   private String apiKey = null;
@@ -53,14 +58,14 @@ public class CredentialManager {
       this.apiVersion = prop.getProperty("CF_VERSION");
 
     } catch (IOException ioe) {
-      ioe.printStackTrace();
+      log.error(LOG_CONTEXT, ioe);
     } finally {
       try {
         if (inputStream != null) {
           inputStream.close();
         }
       } catch (IOException ioe) {
-        ioe.printStackTrace();
+        log.error(LOG_CONTEXT, ioe);
       }
     }        
   }

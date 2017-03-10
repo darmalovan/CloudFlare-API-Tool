@@ -15,8 +15,8 @@ out/
 *.orig
 *~
 
-#.project
-#.classpath
+.project
+.classpath
 .factorypath
 .jazzignore
 .DS_Store

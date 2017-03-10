@@ -20,6 +20,7 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -34,6 +35,9 @@ import java.io.UnsupportedEncodingException;
  *
  */
 public class CloudFlareDomainNameServiceZones {
+
+  final org.slf4j.Logger log = LoggerFactory.getLogger(CloudFlareDomainNameServiceZones.class);
+  static final String LOG_CONTEXT = "context";
 
   private CloudFlareZones cfz = null;
   private String domainName = null;
@@ -60,7 +64,7 @@ public class CloudFlareDomainNameServiceZones {
     //Check if record exists
     boolean recordExists = checkRecordsExists(name, type);
 
-    String result = "";
+    String result;
 
     if (recordExists) {
       result = updateRecord(name, type, content);
@@ -86,17 +90,17 @@ public class CloudFlareDomainNameServiceZones {
     try {
       payload.put("type", type);
     } catch (JSONException e3) {
-      e3.printStackTrace();
+      log.error(LOG_CONTEXT, e3);
     }
     try {
       payload.put("name", name);
     } catch (JSONException e1) {
-      e1.printStackTrace();
+      log.error(LOG_CONTEXT, e1);
     }
     try {
       payload.put("content", content);
     } catch (JSONException e1) {
-      e1.printStackTrace();
+      log.error(LOG_CONTEXT, e1);
     }
     String operator = "zones";
     String subOperator = "dns_records";
@@ -115,7 +119,7 @@ public class CloudFlareDomainNameServiceZones {
     try {
       params = new StringEntity(payload.toString());
     } catch (UnsupportedEncodingException e2) {
-      e2.printStackTrace();
+      log.error(LOG_CONTEXT, e2);
     }
     request.setEntity(params);
 
@@ -123,7 +127,7 @@ public class CloudFlareDomainNameServiceZones {
     try {
       response = client.execute(request);
     } catch (IOException ioe) {
-      ioe.printStackTrace();
+      log.error(LOG_CONTEXT, ioe);
     }
 
     BufferedReader rd = null;
@@ -134,7 +138,7 @@ public class CloudFlareDomainNameServiceZones {
         rd = new BufferedReader(isr);
       }
     } catch (UnsupportedOperationException | IOException uoeioe) {
-      uoeioe.printStackTrace();
+      log.error(LOG_CONTEXT, uoeioe);
     } finally {
       try {
         if (rd != null) {
@@ -144,11 +148,11 @@ public class CloudFlareDomainNameServiceZones {
           isr.close();
         }
       } catch (IOException ioe) {
-        ioe.printStackTrace();
+        log.error(LOG_CONTEXT, ioe);
       }
     }
 
-    StringBuffer result = new StringBuffer();
+    StringBuilder result = new StringBuilder();
     String line = "";
     try {
       if (rd != null) {
@@ -157,14 +161,14 @@ public class CloudFlareDomainNameServiceZones {
         }
       }
     } catch (IOException ioe) {
-      ioe.printStackTrace();
+      log.error(LOG_CONTEXT, ioe);
     }
     JSONObject jobj1 = null;
     try {
       jobj1 = new JSONObject(result.toString());
       resultRecords = jobj1.toString();
     } catch (JSONException je) {
-      je.printStackTrace();
+      log.error(LOG_CONTEXT, je);
     }
 
     return resultRecords;
@@ -184,7 +188,7 @@ public class CloudFlareDomainNameServiceZones {
     try {
       payload = new JSONObject(getDomainNameServiceRecordsForZone());
     } catch (JSONException e2) {
-      e2.printStackTrace();
+      log.error(LOG_CONTEXT, e2);
     }
     String dnsIdentifier = null;
     try {
@@ -192,7 +196,7 @@ public class CloudFlareDomainNameServiceZones {
         dnsIdentifier = payload.getString("id");
       }
     } catch (JSONException e3) {
-      e3.printStackTrace();
+      log.error(LOG_CONTEXT, e3);
     }
 
     if (payload != null && payload.has("content")) {
@@ -200,7 +204,7 @@ public class CloudFlareDomainNameServiceZones {
       try {
         payload.put("content", content.trim());
       } catch (JSONException e2) {
-        e2.printStackTrace();
+        log.error(LOG_CONTEXT, e2);
       }
     }
     String operator = "zones";
@@ -223,7 +227,7 @@ public class CloudFlareDomainNameServiceZones {
         params = new StringEntity(payload.toString());
       }
     } catch (UnsupportedEncodingException e2) {
-      e2.printStackTrace();
+      log.error(LOG_CONTEXT, e2);
     }
     request.setEntity(params);
 
@@ -231,7 +235,7 @@ public class CloudFlareDomainNameServiceZones {
     try {
       response = client.execute(request);
     } catch (IOException ioe) {
-      ioe.printStackTrace();
+      log.error(LOG_CONTEXT, ioe);
     }
 
     BufferedReader rd = null;
@@ -242,7 +246,7 @@ public class CloudFlareDomainNameServiceZones {
         rd = new BufferedReader(isr);
       }
     } catch (UnsupportedOperationException | IOException uoeioe) {
-      uoeioe.printStackTrace();
+      log.error(LOG_CONTEXT, uoeioe);
     } finally {
       try {
         if (rd != null) {
@@ -252,11 +256,11 @@ public class CloudFlareDomainNameServiceZones {
           isr.close();
         }
       } catch (IOException ioe) {
-        ioe.printStackTrace();
+        log.error(LOG_CONTEXT, ioe);
       }
     }
 
-    StringBuffer result = new StringBuffer();
+    StringBuilder result = new StringBuilder();
     String line = "";
     try {
       if (rd != null) {
@@ -265,14 +269,14 @@ public class CloudFlareDomainNameServiceZones {
         }
       }
     } catch (IOException ioe) {
-      ioe.printStackTrace();
+      log.error(LOG_CONTEXT, ioe);
     }
     JSONObject jobj1 = null;
     try {
       jobj1 = new JSONObject(result.toString());
       resultRecords = jobj1.toString();
     } catch (JSONException je) {
-      je.printStackTrace();
+      log.error(LOG_CONTEXT, je);
     }
 
     return resultRecords;
@@ -310,7 +314,7 @@ public class CloudFlareDomainNameServiceZones {
     try {
       response = client.execute(request);
     } catch (IOException ioe) {
-      ioe.printStackTrace();
+      log.error(LOG_CONTEXT, ioe);
     }
 
     BufferedReader rd = null;
@@ -321,7 +325,7 @@ public class CloudFlareDomainNameServiceZones {
         rd = new BufferedReader(isr);
       }
     } catch (UnsupportedOperationException | IOException uoeioe) {
-      uoeioe.printStackTrace();
+      log.error(LOG_CONTEXT, uoeioe);
     } finally {
       try {
         if (rd != null) {
@@ -331,11 +335,11 @@ public class CloudFlareDomainNameServiceZones {
           isr.close();
         }
       } catch (IOException ioe) {
-        ioe.printStackTrace();
+        log.error(LOG_CONTEXT, ioe);
       }
     }
 
-    StringBuffer result = new StringBuffer();
+    StringBuilder result = new StringBuilder();
     String line = "";
     try {
       if (rd != null) {
@@ -344,13 +348,13 @@ public class CloudFlareDomainNameServiceZones {
         }
       }
     } catch (IOException ioe) {
-      ioe.printStackTrace();
+      log.error(LOG_CONTEXT, ioe);
     }
     JSONObject jobj1 = null;
     try {
       jobj1 = new JSONObject(result.toString());
     } catch (JSONException je) {
-      je.printStackTrace();
+      log.error(LOG_CONTEXT, je);
     }
 
     JSONObject jobj2 = null;
@@ -359,7 +363,7 @@ public class CloudFlareDomainNameServiceZones {
         jobj2 = new JSONObject(jobj1.get("result_info").toString());
       }
     } catch (JSONException e1) {
-      e1.printStackTrace();
+      log.error(LOG_CONTEXT, e1);
     }
 
     if (jobj2 != null && jobj2.has("count") ) {
@@ -368,7 +372,7 @@ public class CloudFlareDomainNameServiceZones {
           recordExists = true;
         }
       } catch (NumberFormatException | JSONException nfeje) {
-        nfeje.printStackTrace();
+        log.error(LOG_CONTEXT, nfeje);
       }
     }
 
@@ -399,7 +403,7 @@ public class CloudFlareDomainNameServiceZones {
     try {
       response = client.execute(request);
     } catch (IOException ioe) {
-      ioe.printStackTrace();
+      log.error(LOG_CONTEXT, ioe);
     }
 
     BufferedReader rd = null;
@@ -410,7 +414,7 @@ public class CloudFlareDomainNameServiceZones {
         rd = new BufferedReader(isr);
       }
     } catch (UnsupportedOperationException | IOException uoeioe) {
-      uoeioe.printStackTrace();
+      log.error(LOG_CONTEXT, uoeioe);
     } finally {
       try {
         if (rd != null) {
@@ -420,11 +424,11 @@ public class CloudFlareDomainNameServiceZones {
           isr.close();
         }
       } catch (IOException ioe) {
-        ioe.printStackTrace();
+        log.error(LOG_CONTEXT, ioe);
       }
     }
 
-    StringBuffer result = new StringBuffer();
+    StringBuilder result = new StringBuilder();
     String line = "";
     try {
       if (rd != null) {
@@ -433,13 +437,13 @@ public class CloudFlareDomainNameServiceZones {
         }
       }
     } catch (IOException ioe) {
-      ioe.printStackTrace();
+      log.error(LOG_CONTEXT, ioe);
     }
     JSONObject jobj1 = null;
     try {
       jobj1 = new JSONObject(result.toString());
     } catch (JSONException je) {
-      je.printStackTrace();
+      log.error(LOG_CONTEXT, je);
     }
 
     JSONArray jarr1 = null;
@@ -448,7 +452,7 @@ public class CloudFlareDomainNameServiceZones {
         jarr1 = new JSONArray(jobj1.get("result").toString());
       }
     } catch (JSONException e1) {
-      e1.printStackTrace();
+      log.error(LOG_CONTEXT, e1);
     }
 
     if (jarr1 != null) {
@@ -456,12 +460,12 @@ public class CloudFlareDomainNameServiceZones {
         try {
           JSONObject tmpObj = new JSONObject(jarr1.get(i).toString());
           if (tmpObj.getString("name").equals(this.domainName) 
-              && (tmpObj.getString("type").equals("A") 
-                  || tmpObj.getString("type").equals("CNAME"))) {
+              && ("A".equals(tmpObj.getString("type")) 
+                  || "CNAME".equals(tmpObj.getString("type")))) {
             resultRecords = tmpObj.toString();
           }
         } catch (JSONException je) {
-          je.printStackTrace();
+          log.error(LOG_CONTEXT, je);
         }
       }
     }
@@ -481,7 +485,7 @@ public class CloudFlareDomainNameServiceZones {
     try {
       payload = new JSONObject(getDomainNameServiceRecordsForZone());
     } catch (JSONException e2) {
-      e2.printStackTrace();
+      log.error(LOG_CONTEXT, e2);
     }
     String dnsIdentifier = null;
     try {
@@ -489,7 +493,7 @@ public class CloudFlareDomainNameServiceZones {
         dnsIdentifier = payload.getString("id");
       }
     } catch (JSONException e3) {
-      e3.printStackTrace();
+      log.error(LOG_CONTEXT, e3);
     }
 
     if (payload != null && payload.has("proxied")) {
@@ -497,7 +501,7 @@ public class CloudFlareDomainNameServiceZones {
       try {
         payload.put("proxied", false);
       } catch (JSONException e2) {
-        e2.printStackTrace();
+        log.error(LOG_CONTEXT, e2);
       }
     }
     String operator = "zones";
@@ -524,7 +528,7 @@ public class CloudFlareDomainNameServiceZones {
         params = new StringEntity(payload.toString());
       }
     } catch (UnsupportedEncodingException e2) {
-      e2.printStackTrace();
+      log.error(LOG_CONTEXT, e2);
     }
     request.setEntity(params);
 
@@ -532,7 +536,7 @@ public class CloudFlareDomainNameServiceZones {
     try {
       response = client.execute(request);
     } catch (IOException ioe) {
-      ioe.printStackTrace();
+      log.error(LOG_CONTEXT, ioe);
     }
 
     BufferedReader rd = null;
@@ -542,18 +546,18 @@ public class CloudFlareDomainNameServiceZones {
         rd = new BufferedReader(isr);
       }
     } catch (UnsupportedOperationException | IOException uoeioe) {
-      uoeioe.printStackTrace();
+      log.error(LOG_CONTEXT, uoeioe);
     } finally {
       try {
         if (rd != null) {
           rd.close();
         }
       } catch (IOException ioe) {
-        ioe.printStackTrace();
+        log.error(LOG_CONTEXT, ioe);
       }
     }
 
-    StringBuffer result = new StringBuffer();
+    StringBuilder result = new StringBuilder();
     String line = "";
     try {
       if (rd != null) {
@@ -562,14 +566,14 @@ public class CloudFlareDomainNameServiceZones {
         }
       }
     } catch (IOException ioe) {
-      ioe.printStackTrace();
+      log.error(LOG_CONTEXT, ioe);
     }
     JSONObject jobj1 = null;
     try {
       jobj1 = new JSONObject(result.toString());
       resultRecords = jobj1.toString();
     } catch (JSONException je) {
-      je.printStackTrace();
+      log.error(LOG_CONTEXT, je);
     }
 
     return resultRecords;
@@ -586,7 +590,7 @@ public class CloudFlareDomainNameServiceZones {
     try {
       payload = new JSONObject(getDomainNameServiceRecordsForZone());
     } catch (JSONException e2) {
-      e2.printStackTrace();
+      log.error(LOG_CONTEXT, e2);
     }
     String dnsIdentifier = null;
     try {
@@ -594,7 +598,7 @@ public class CloudFlareDomainNameServiceZones {
         dnsIdentifier = payload.getString("id"); 
       }
     } catch (JSONException e3) {
-      e3.printStackTrace();
+      log.error(LOG_CONTEXT, e3);
     }
 
     if (payload != null && payload.has("proxied")) {
@@ -602,7 +606,7 @@ public class CloudFlareDomainNameServiceZones {
       try {
         payload.put("proxied", true);
       } catch (JSONException e2) {
-        e2.printStackTrace();
+        log.error(LOG_CONTEXT, e2);
       }
     }
     String operator = "zones";
@@ -629,7 +633,7 @@ public class CloudFlareDomainNameServiceZones {
         params = new StringEntity(payload.toString());
       }
     } catch (UnsupportedEncodingException e2) {
-      e2.printStackTrace();
+      log.error(LOG_CONTEXT, e2);
     }
     request.setEntity(params);
 
@@ -637,7 +641,7 @@ public class CloudFlareDomainNameServiceZones {
     try {
       response = client.execute(request);
     } catch (IOException ioe) {
-      ioe.printStackTrace();
+      log.error(LOG_CONTEXT, ioe);
     }
 
     BufferedReader rd = null;
@@ -648,7 +652,7 @@ public class CloudFlareDomainNameServiceZones {
         rd = new BufferedReader(isr);
       }
     } catch (UnsupportedOperationException | IOException uoeioe) {
-      uoeioe.printStackTrace();
+      log.error(LOG_CONTEXT, uoeioe);
     } finally {
       try {
         if (rd != null) {
@@ -658,11 +662,11 @@ public class CloudFlareDomainNameServiceZones {
           isr.close();
         }
       } catch (IOException ioe) {
-        ioe.printStackTrace();
+        log.error(LOG_CONTEXT, ioe);
       }
     }
 
-    StringBuffer result = new StringBuffer();
+    StringBuilder result = new StringBuilder();
     String line = "";
     try {
       if (rd != null) {
@@ -671,14 +675,14 @@ public class CloudFlareDomainNameServiceZones {
         }
       }
     } catch (IOException ioe) {
-      ioe.printStackTrace();
+      log.error(LOG_CONTEXT, ioe);
     }
     JSONObject jobj1 = null;
     try {
       jobj1 = new JSONObject(result.toString());
       resultRecords = jobj1.toString();
     } catch (JSONException je) {
-      je.printStackTrace();
+      log.error(LOG_CONTEXT, je);
     }
 
     return resultRecords;
