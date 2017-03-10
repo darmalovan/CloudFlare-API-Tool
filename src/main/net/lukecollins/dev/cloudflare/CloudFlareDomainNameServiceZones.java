@@ -41,6 +41,8 @@ public class CloudFlareDomainNameServiceZones {
   static final String DEFAULT_ENCODING = "UTF-8";
   static final String EMAIL_HEADER = "X-Auth-Email";
   static final String API_HEADER = "X-Auth-Key";
+  static final String CONTENTTYPE_HEADER = "Content-Type";
+  static final String CONTENTTYPE_JSON = "application/json";
 
   private CloudFlareZones cfz = null;
   private String domainName = null;
@@ -116,7 +118,7 @@ public class CloudFlareDomainNameServiceZones {
     HttpPost request = new HttpPost(url);
     request.setHeader(EMAIL_HEADER, Constants.USERNAME);
     request.setHeader(API_HEADER, Constants.APIKEY);
-    request.setHeader("Content-Type","application/json");
+    request.setHeader(CONTENTTYPE_HEADER, CONTENTTYPE_JSON);
 
     StringEntity params = null;
     try {
@@ -222,7 +224,7 @@ public class CloudFlareDomainNameServiceZones {
     HttpPut request = new HttpPut(url);
     request.setHeader(EMAIL_HEADER, Constants.USERNAME);
     request.setHeader(API_HEADER, Constants.APIKEY);
-    request.setHeader("Content-Type","application/json");
+    request.setHeader(CONTENTTYPE_HEADER, CONTENTTYPE_JSON);
 
     StringEntity params = null;
     try {
@@ -311,7 +313,7 @@ public class CloudFlareDomainNameServiceZones {
     HttpGet request = new HttpGet(url);
     request.setHeader(EMAIL_HEADER, Constants.USERNAME);
     request.setHeader(API_HEADER, Constants.APIKEY);
-    request.setHeader("Content-Type","application/json");
+    request.setHeader(CONTENTTYPE_HEADER, CONTENTTYPE_JSON);
 
     HttpResponse response = null;
     try {
@@ -400,7 +402,7 @@ public class CloudFlareDomainNameServiceZones {
     HttpGet request = new HttpGet(url);
     request.setHeader(EMAIL_HEADER, Constants.USERNAME);
     request.setHeader(API_HEADER, Constants.APIKEY);
-    request.setHeader("Content-Type","application/json");
+    request.setHeader(CONTENTTYPE_HEADER, CONTENTTYPE_JSON);
 
     HttpResponse response = null;
     try {
@@ -523,7 +525,7 @@ public class CloudFlareDomainNameServiceZones {
     HttpPut request = new HttpPut(url);
     request.setHeader(EMAIL_HEADER, Constants.USERNAME);
     request.setHeader(API_HEADER, Constants.APIKEY);
-    request.setHeader("Content-Type","application/json");
+    request.setHeader(CONTENTTYPE_HEADER, CONTENTTYPE_JSON);
 
     StringEntity params = null;
     try {
@@ -628,7 +630,7 @@ public class CloudFlareDomainNameServiceZones {
     HttpPut request = new HttpPut(url);
     request.setHeader(EMAIL_HEADER, Constants.USERNAME);
     request.setHeader(API_HEADER, Constants.APIKEY);
-    request.setHeader("Content-Type","application/json");
+    request.setHeader(CONTENTTYPE_HEADER, CONTENTTYPE_JSON);
 
     StringEntity params = null;
     try {
