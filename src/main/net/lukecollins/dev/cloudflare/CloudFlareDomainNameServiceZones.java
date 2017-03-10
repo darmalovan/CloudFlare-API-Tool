@@ -547,7 +547,8 @@ public class CloudFlareDomainNameServiceZones {
     BufferedReader rd = null;
     try {
       if (response != null) {
-        InputStreamReader isr = new InputStreamReader(response.getEntity().getContent(), DEFAULT_ENCODING);
+        InputStreamReader isr = new InputStreamReader(response.getEntity().getContent(), 
+                                                      DEFAULT_ENCODING);
         rd = new BufferedReader(isr);
       }
     } catch (UnsupportedOperationException | IOException uoeioe) {
