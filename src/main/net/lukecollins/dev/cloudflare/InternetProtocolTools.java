@@ -10,13 +10,13 @@
 
 package net.lukecollins.dev.cloudflare;
 
+import org.slf4j.LoggerFactory;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
-
-import org.slf4j.LoggerFactory;
 
 /**
  * Tool to interact with CloudFlare API.
