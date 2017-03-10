@@ -28,14 +28,14 @@ public class Client {
       System.exit(1);
     }
 
-    if (args[0].equalsIgnoreCase("enable")) {
+    if ("enable".equalsIgnoreCase(args[0])) {
       String domainName = args[1].trim();
       CloudFlareZones cfz = new CloudFlareZones(domainName);
       CloudFlareDomainNameServiceZones cfdz = 
           new CloudFlareDomainNameServiceZones(cfz, domainName);
 
       System.out.println(cfdz.enableProxy());
-    } else if (args[0].equalsIgnoreCase("disable")) {
+    } else if ("disable".equalsIgnoreCase(args[0])) {
       String domainName = args[1].trim();
       CloudFlareZones cfz = new CloudFlareZones(domainName);
       CloudFlareDomainNameServiceZones cfdz = 
@@ -43,7 +43,7 @@ public class Client {
 
       System.out.println(cfdz.disableProxy());
 
-    } else if (args[0].equalsIgnoreCase("dns")) {
+    } else if ("dns".equalsIgnoreCase(args[0])) {
       String domainName = args[1].trim();
       String dnsType = args[2].trim();
       CloudFlareZones cfz = new CloudFlareZones(domainName);

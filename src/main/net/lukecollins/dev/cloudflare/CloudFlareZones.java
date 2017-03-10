@@ -17,6 +17,7 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -31,6 +32,9 @@ import java.io.InputStreamReader;
  *
  */
 public class CloudFlareZones {
+  
+  final org.slf4j.Logger log = LoggerFactory.getLogger(CloudFlareZones.class);
+  static final String LOG_CONTEXT = "context";
 
   private String domainName = null;
 
@@ -78,7 +82,7 @@ public class CloudFlareZones {
     try {
       response = client.execute(request);
     } catch (IOException ioe) {
-      ioe.printStackTrace();
+      log.error(LOG_CONTEXT, ioe);
     }
 
     BufferedReader rd = null;
@@ -89,7 +93,7 @@ public class CloudFlareZones {
         rd = new BufferedReader(isr);
       }
     } catch (UnsupportedOperationException | IOException uoeioe) {
-      uoeioe.printStackTrace();
+      log.error(LOG_CONTEXT, uoeioe);
     } finally {
       try {
         if (rd != null) {
@@ -99,11 +103,11 @@ public class CloudFlareZones {
           isr.close();
         }
       } catch (IOException ioe) {
-        ioe.printStackTrace();
+        log.error(LOG_CONTEXT, ioe);
       }
     }
 
-    StringBuffer result = new StringBuffer();
+    StringBuilder result = new StringBuilder();
     String line = "";
     try {
       if (rd != null) {
@@ -112,13 +116,13 @@ public class CloudFlareZones {
         }
       }
     } catch (IOException ioe) {
-      ioe.printStackTrace();
+      log.error(LOG_CONTEXT, ioe);
     }
     JSONObject jobj1 = null;
     try {
       jobj1 = new JSONObject(result.toString());
     } catch (JSONException je) {
-      je.printStackTrace();
+      log.error(LOG_CONTEXT, je);
     }
 
     JSONArray jarr1 = null;
@@ -127,7 +131,7 @@ public class CloudFlareZones {
         jarr1 = new JSONArray(jobj1.get("result").toString());
       }
     } catch (JSONException e1) {
-      e1.printStackTrace();
+      log.error(LOG_CONTEXT, e1);
     }
 
     if (jarr1 != null) {
@@ -138,7 +142,7 @@ public class CloudFlareZones {
             resultZone = tmpObj.get("id").toString();
           }
         } catch (JSONException je) {
-          je.printStackTrace();
+          log.error(LOG_CONTEXT, je);
         }
       }
     }
