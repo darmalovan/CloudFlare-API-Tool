@@ -35,7 +35,8 @@ public class InternetProtocolToolsTest {
   }
 
   @org.junit.Test
-  public void test() {
-    assertTrue(1 > 0);  
+  public void ipAddressTest() {
+    InternetProtocolTools internetTools = new InternetProtocolTools();
+    assertTrue(internetTools.myIpAddress().contains(""));  
   }
 }

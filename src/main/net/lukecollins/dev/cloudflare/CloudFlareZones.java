@@ -32,7 +32,7 @@ import java.io.InputStreamReader;
  *
  */
 public class CloudFlareZones {
-  
+
   final org.slf4j.Logger log = LoggerFactory.getLogger(CloudFlareZones.class);
   static final String LOG_CONTEXT = "context";
 
@@ -50,7 +50,7 @@ public class CloudFlareZones {
    * Get short domain name if subdomain is passed.
    * @return short domain name
    */
-  private String getShortDomainName() {
+  protected String getShortDomainName() {
     String text = this.domainName;
     String s2 = text;
     int count = text.split("\\.",-1).length - 1;
@@ -72,18 +72,7 @@ public class CloudFlareZones {
 
     String url = Constants.VERSIONED_URL + "/" + operator + param;
 
-    HttpClient client = HttpClientBuilder.create().build();
-    HttpGet request = new HttpGet(url);
-    request.setHeader("X-Auth-Email",Constants.USERNAME);
-    request.setHeader("X-Auth-Key", Constants.APIKEY);
-    request.setHeader("Content-Type","application/json");
-
-    HttpResponse response = null;
-    try {
-      response = client.execute(request);
-    } catch (IOException ioe) {
-      log.error(LOG_CONTEXT, ioe);
-    }
+    HttpResponse response = getRequest(url);
 
     BufferedReader rd = null;
     InputStreamReader isr = null;
@@ -148,5 +137,22 @@ public class CloudFlareZones {
     }
 
     return resultZone;
+  }
+
+  private HttpResponse getRequest(String url) {
+    HttpClient client = HttpClientBuilder.create().build();
+    HttpGet request = new HttpGet(url);
+    request.setHeader("X-Auth-Email",Constants.USERNAME);
+    request.setHeader("X-Auth-Key", Constants.APIKEY);
+    request.setHeader("Content-Type","application/json");
+
+    HttpResponse response = null;
+    try {
+      response = client.execute(request);
+    } catch (IOException ioe) {
+      log.error(LOG_CONTEXT, ioe);
+    }
+
+    return response;
   }
 }
