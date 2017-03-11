@@ -20,7 +20,7 @@ task wrapper(type: Wrapper) {
 sonarqube {
 	properties {
 		property "sonar.projectName", "CloudFlare-API-Tool"
-		property "sonar.projectKey", "net.lukecollins.dev:cloudflare-api-tool"
+		property "sonar.projectKey", "CloudFlare-API-Tool"
 		property "sonar.host.url", "https://sonarqube.com"
 	}
 }
