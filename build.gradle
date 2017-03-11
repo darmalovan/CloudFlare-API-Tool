@@ -17,6 +17,14 @@ task wrapper(type: Wrapper) {
 	gradleVersion = '3.4.1'
 }
 
+sonarqube {
+	properties {
+		property "sonar.projectName", "CloudFlare-API-Tool"
+		property "sonar.projectKey", "net.lukecollins.dev:cloudflare-api-tool"
+		property "sonar.host.url", "https://sonarqube.com"
+	}
+}
+
 checkstyle {
 	configFile = file("${project.rootDir}/config/checkstyle/checkstyle.xml")
 	toolVersion = '7.6'

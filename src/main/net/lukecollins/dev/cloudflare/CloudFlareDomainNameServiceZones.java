@@ -43,7 +43,12 @@ public class CloudFlareDomainNameServiceZones {
   static final String API_HEADER = "X-Auth-Key";
   static final String CONTENTTYPE_HEADER = "Content-Type";
   static final String CONTENTTYPE_JSON = "application/json";
-
+  static final String CONTENT = "content";
+  static final String TYPE = "type";
+  static final String NAME = "name";
+  static final String ZONES = "zones";
+  static final String DNS_RECORDS = "dns_records";
+  
   private CloudFlareZones cfz = null;
   private String domainName = null;
 
@@ -93,22 +98,22 @@ public class CloudFlareDomainNameServiceZones {
     JSONObject payload  = new JSONObject();
 
     try {
-      payload.put("type", type);
+      payload.put(TYPE, type);
     } catch (JSONException e3) {
       log.error(LOG_CONTEXT, e3);
     }
     try {
-      payload.put("name", name);
+      payload.put(NAME, name);
     } catch (JSONException e1) {
       log.error(LOG_CONTEXT, e1);
     }
     try {
-      payload.put("content", content);
+      payload.put(CONTENT, content);
     } catch (JSONException e1) {
       log.error(LOG_CONTEXT, e1);
     }
-    String operator = "zones";
-    String subOperator = "dns_records";
+    String operator = ZONES;
+    String subOperator = DNS_RECORDS;
     String url = Constants.VERSIONED_URL + "/" 
         + operator + "/" 
         + cfz.getZoneId() + "/" 
@@ -204,16 +209,16 @@ public class CloudFlareDomainNameServiceZones {
       log.error(LOG_CONTEXT, e3);
     }
 
-    if (payload != null && payload.has("content")) {
-      payload.remove("content");
+    if (payload != null && payload.has(CONTENT)) {
+      payload.remove(CONTENT);
       try {
-        payload.put("content", content.trim());
+        payload.put(CONTENT, content.trim());
       } catch (JSONException e2) {
         log.error(LOG_CONTEXT, e2);
       }
     }
-    String operator = "zones";
-    String subOperator = "dns_records";
+    String operator = ZONES;
+    String subOperator = DNS_RECORDS;
     String url = Constants.VERSIONED_URL + "/" 
         + operator + "/" 
         + cfz.getZoneId() + "/" 
@@ -295,8 +300,8 @@ public class CloudFlareDomainNameServiceZones {
    */
   private boolean checkRecordsExists(String name, String type) {
     boolean recordExists = false;
-    String operator = "zones";
-    String subOperator = "dns_records";
+    String operator = ZONES;
+    String subOperator = DNS_RECORDS;
 
     String url = Constants.VERSIONED_URL
         + "/" 
@@ -390,8 +395,8 @@ public class CloudFlareDomainNameServiceZones {
    */
   private String getDomainNameServiceRecordsForZone() {
     String resultRecords = null;
-    String operator = "zones";
-    String subOperator = "dns_records";
+    String operator = ZONES;
+    String subOperator = DNS_RECORDS;
 
     String url = Constants.VERSIONED_URL
         + "/" + operator + "/" 
@@ -464,9 +469,9 @@ public class CloudFlareDomainNameServiceZones {
       for (int i = 0; i < jarr1.length(); i++) {
         try {
           JSONObject tmpObj = new JSONObject(jarr1.get(i).toString());
-          if (tmpObj.getString("name").equals(this.domainName) 
-              && ("A".equals(tmpObj.getString("type")) 
-                  || "CNAME".equals(tmpObj.getString("type")))) {
+          if (tmpObj.getString(NAME).equals(this.domainName) 
+              && ("A".equals(tmpObj.getString(TYPE)) 
+                  || "CNAME".equals(tmpObj.getString(TYPE)))) {
             resultRecords = tmpObj.toString();
           }
         } catch (JSONException je) {
@@ -509,8 +514,8 @@ public class CloudFlareDomainNameServiceZones {
         log.error(LOG_CONTEXT, e2);
       }
     }
-    String operator = "zones";
-    String subOperator = "dns_records";
+    String operator = ZONES;
+    String subOperator = DNS_RECORDS;
     String url = Constants.VERSIONED_URL
         + "/" 
         + operator 
@@ -615,8 +620,8 @@ public class CloudFlareDomainNameServiceZones {
         log.error(LOG_CONTEXT, e2);
       }
     }
-    String operator = "zones";
-    String subOperator = "dns_records";
+    String operator = ZONES;
+    String subOperator = DNS_RECORDS;
     String url = Constants.VERSIONED_URL 
         + "/" 
         + operator 

@@ -10,6 +10,8 @@
 
 package net.lukecollins.dev.cloudflare;
 
+import org.slf4j.LoggerFactory;
+
 /**
  * Tool to interact with CloudFlare API.
  * @author Luke Collins
@@ -17,6 +19,12 @@ package net.lukecollins.dev.cloudflare;
  *
  */
 public class Client {
+
+  static final org.slf4j.Logger log = LoggerFactory.getLogger(CloudFlareZones.class);
+  static final String LOG_CONTEXT = "context";
+
+  private Client() {
+  }
 
   /**
    * Pass enable/disable/dns domainName.
@@ -33,15 +41,15 @@ public class Client {
       CloudFlareZones cfz = new CloudFlareZones(domainName);
       CloudFlareDomainNameServiceZones cfdz = 
           new CloudFlareDomainNameServiceZones(cfz, domainName);
-
-      System.out.println(cfdz.enableProxy());
+      String result = cfdz.enableProxy();
+      log.info(result);
     } else if ("disable".equalsIgnoreCase(args[0])) {
       String domainName = args[1].trim();
       CloudFlareZones cfz = new CloudFlareZones(domainName);
       CloudFlareDomainNameServiceZones cfdz = 
           new CloudFlareDomainNameServiceZones(cfz, domainName);
-
-      System.out.println(cfdz.disableProxy());
+      String result = cfdz.disableProxy();
+      log.info(result);
 
     } else if ("dns".equalsIgnoreCase(args[0])) {
       String domainName = args[1].trim();
@@ -51,7 +59,8 @@ public class Client {
       String content = ipt.myIpAddress();
       CloudFlareDomainNameServiceZones cfdz = 
           new CloudFlareDomainNameServiceZones(cfz, domainName);
-      System.out.println(cfdz.createOrUpdateRecord(domainName, dnsType, content));
+      String result = cfdz.createOrUpdateRecord(domainName, dnsType, content);
+      log.info(result);
     }
   }
 }

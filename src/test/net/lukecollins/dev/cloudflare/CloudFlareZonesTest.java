@@ -35,7 +35,20 @@ public class CloudFlareZonesTest {
   }
 
   @org.junit.Test
-  public void test() {
-    assertTrue(1 > 0);  
+  public void constructorToStringTest() {
+    CloudFlareZones zones = new CloudFlareZones("test.lukecollins.net");
+    assertTrue(zones.toString().contains(""));
+  }
+  
+  @org.junit.Test
+  public void getShortDomainNameTest() {
+    CloudFlareZones zones = new CloudFlareZones("test.lukecollins.net");
+    assertTrue(zones.getShortDomainName().equals("lukecollins.net"));
+  }
+  
+  @org.junit.Test
+  public void getShortDomainName2Test() {
+    CloudFlareZones zones = new CloudFlareZones("lukecollins.net");
+    assertTrue(zones.getShortDomainName().equals("lukecollins.net"));
   }
 }

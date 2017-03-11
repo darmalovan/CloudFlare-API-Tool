@@ -24,4 +24,7 @@ public class Constants {
   public static final String URL = cm.getApiUrl();
   public static final String VERSION = cm.getApiVersion();
   public static final String VERSIONED_URL = cm.getApiVersionedUrl();
+  
+  private Constants() {
+  }
 }
