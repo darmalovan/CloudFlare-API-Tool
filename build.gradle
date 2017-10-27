@@ -27,7 +27,7 @@ sonarqube {
 
 checkstyle {
 	configFile = file("${project.rootDir}/config/checkstyle/checkstyle.xml")
-	toolVersion = '8.1'
+	toolVersion = '8.3'
 	ignoreFailures = false
 }
 
