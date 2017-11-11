@@ -12,7 +12,7 @@ apply plugin: 'maven'
 
 repositories {
         maven {
-          url "http://nexus.lukecollins.net:8081/repository/maven-public/"
+          url "https://nexus.lukecollins.net/repository/maven-public/"
         }
 }
 
@@ -96,7 +96,7 @@ dependencies {
 uploadArchives {
     repositories {
        mavenDeployer {
-             repository(url: "http://nexus.lukecollins.net:8081/repository/lcnet/") {
+             repository(url: "https://nexus.lukecollins.net/repository/lcnet/") {
              authentication(userName: System.getenv('NEXUS_USR'), password: System.getenv('NEXUS_PASS'))
 }
              pom.version = System.getenv('VERSION')
