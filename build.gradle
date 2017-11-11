@@ -12,7 +12,7 @@ apply plugin: 'maven'
 
 repositories {
         maven {
-          url "http://fr-ovh01-vps002.lukecollins.net:8081/repository/maven-public/"
+          url "http://nexus.lukecollins.net:8081/repository/maven-public/"
         }
 }
 
@@ -96,10 +96,10 @@ dependencies {
 uploadArchives {
     repositories {
        mavenDeployer {
-             repository(url: "http://fr-ovh01-vps002.lukecollins.net:8081/repository/lcnet/") {
+             repository(url: "http://nexus.lukecollins.net:8081/repository/lcnet/") {
              authentication(userName: System.getenv('NEXUS_USR'), password: System.getenv('NEXUS_PASS'))
 }
-             pom.version = "1.0-SNAPSHOT"
+             pom.version = System.getenv('VERSION')
              pom.artifactId = "cloudflare-api-tool"
              pom.groupId = "net.lukecollins"
        }
