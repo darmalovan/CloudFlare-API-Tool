@@ -57,8 +57,7 @@ public class CloudFlareDomainNameServiceZones {
    * @param cfz Zone
    * @param domainName Domain
    */
-  public CloudFlareDomainNameServiceZones(CloudFlareZones cfz, 
-      String domainName) {
+  public CloudFlareDomainNameServiceZones(CloudFlareZones cfz, String domainName) {
     this.cfz = cfz;
     this.domainName = domainName;
   }
@@ -471,7 +470,8 @@ public class CloudFlareDomainNameServiceZones {
           JSONObject tmpObj = new JSONObject(jarr1.get(i).toString());
           if (tmpObj.getString(NAME).equals(this.domainName) 
               && ("A".equals(tmpObj.getString(TYPE)) 
-                  || "CNAME".equals(tmpObj.getString(TYPE)))) {
+                  || "CNAME".equals(tmpObj.getString(TYPE))))
+          {
             resultRecords = tmpObj.toString();
           }
         } catch (JSONException je) {
