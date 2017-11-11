@@ -8,9 +8,12 @@ apply plugin: 'eclipse'
 apply plugin: 'findbugs'
 apply plugin: 'checkstyle'
 apply plugin: 'jacoco'
+apply plugin: 'maven'
 
 repositories {
-	mavenCentral()
+        maven {
+          url "http://fr-ovh01-vps002.lukecollins.net:8081/repository/maven-public/"
+        }
 }
 
 task wrapper(type: Wrapper) {
@@ -88,6 +91,19 @@ dependencies {
 	testCompile group: 'commons-logging', name: 'commons-logging', version: '1.2'
 	testCompile group: 'commons-codec', name: 'commons-codec', version: '1.11'
 	testCompile group: 'org.json', name: 'json', version: '20171018'
+}
+
+uploadArchives {
+    repositories {
+       mavenDeployer {
+             repository(url: "http://fr-ovh01-vps002.lukecollins.net:8081/repository/lcnet/") {
+             authentication(userName: System.getenv('NEXUS_USR'), password: System.getenv('NEXUS_PASS'))
+}
+             pom.version = "1.0-SNAPSHOT"
+             pom.artifactId = "cloudflare-api-tool"
+             pom.groupId = "net.lukecollins"
+       }
+    }
 }
 
 sourceSets {
