@@ -8,7 +8,7 @@ apply plugin: 'eclipse'
 apply plugin: 'findbugs'
 apply plugin: 'checkstyle'
 apply plugin: 'jacoco'
-apply plugin: 'maven'
+apply plugin: 'maven-publish'
 
 repositories {
         maven {
@@ -93,16 +93,23 @@ dependencies {
 	testCompile group: 'org.json', name: 'json', version: '20171018'
 }
 
-uploadArchives {
-    repositories {
-       mavenDeployer {
-             repository(url: "https://nexus.lukecollins.net/repository/lcnet/") {
-             authentication(userName: System.getenv('NEXUS_USR'), password: System.getenv('NEXUS_PASS'))
-}
-             pom.version = System.getenv('VERSION')
-             pom.artifactId = "cloudflare-api-tool"
-             pom.groupId = "net.lukecollins"
+publishing {
+   publications {
+       mavenJava(MavenPublication) {
+          groupId 'net.lukecollins'
+          artifactId 'cloudflare-api-tool'
+          version System.getenv('VERSION')
+          from components.java
        }
+    }
+    repositories {
+        maven {
+      		credentials {
+        		username System.getenv('NEXUS_USR')
+       			password System.getenv('NEXUS_PASS')
+      		}
+            url "https://nexus.lukecollins.net/repository/lcnet/"
+        }
     }
 }
 
